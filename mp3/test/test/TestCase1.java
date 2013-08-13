@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 stanislawbartkowski@gmail.com
+ * Copyright 2013 stanislawbartkowski@gmail.com
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,38 +17,16 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.logging.Logger;
 
 import org.junit.Test;
 
-import com.mp3organizer.directory.CopyFile;
 import com.mp3organizer.directory.DestDirectory;
-import com.mp3organizer.directory.FileDescr;
 import com.mp3organizer.directory.ITestInterrup;
 import com.mp3organizer.exception.Mp3Exception;
 import com.mp3organizer.param.GetParam;
 import com.mp3organizer.run.RunBox;
 
-public class TestCase1 {
-
-    private Logger log = Logger.getLogger("mp3.reader");
-
-    private void removeDir(final String dir) throws Mp3Exception {
-        DestDirectory deste = new DestDirectory(log);
-        deste.readDirectory(dir);
-        for (FileDescr fd = deste.getFileAndRemove(); fd != null; fd = deste.getFileAndRemove()) {
-            CopyFile.removeFile(fd.getFileName());
-        }
-
-    }
-
-    private String getSouDir(final String rdir) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL u = classLoader.getResource(rdir);
-        String pa = u.getPath();
-        return pa;
-    }
+public class TestCase1 extends TestHelper {
 
     /**
      * Test that directory is read properly
@@ -80,16 +58,6 @@ public class TestCase1 {
         assertTrue(dest.isFile("file4.mp3"));
     }
 
-    private void copyS(final String dir, final String file, final String destdir,
-            final String destprefix) throws IOException {
-        String p = dir + File.separator + file;
-        String de = file;
-        if (destprefix != null) {
-            de = destprefix + file;
-        }
-        CopyFile.copyFile(p, destdir, de, null);
-    }
-
     /**
      * Test that file from source to dest are copied properly
      * Step1: Remove all file is dest
@@ -113,20 +81,6 @@ public class TestCase1 {
         assertTrue(deste.isFile("file1.mp3"));
         assertTrue(deste.isFile("file4.mp3"));
         assertFalse(deste.isFile("file2.mp3"));
-    }
-
-    private class TestI implements ITestInterrup {
-
-        private int no = 0;
-
-        @Override
-        public void copyI(final String sourceFile, final String destFile)
-                throws IOException {
-            no++;
-            if (no == 2) {
-                throw new IOException();
-            }
-        }
     }
 
     /**
@@ -168,4 +122,5 @@ public class TestCase1 {
         assertTrue(deste.isFile("2009-10-03-file4.mp3"));
         assertTrue(deste.isFile("2009-10-03-file5.mp3"));
     }
+  
 }
