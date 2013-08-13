@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 stanislawbartkowski@gmail.com
+ * Copyright 2013 stanislawbartkowski@gmail.com
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -49,14 +49,14 @@ public class FileDescr {
 
     /**
      * Comparator by modification date.
-     * @param f2 The file to compare woith
+     * @param f2 The file to compare with
      * @return: -1: less, 0 equal 1: later
      */
     final int compare(final FileDescr f2) {
-        if (lastModified < f2.lastModified) {
+        if (lastModified.longValue() < f2.lastModified.longValue()) {
             return -1;
         }
-        if (lastModified == f2.lastModified) {
+        if (lastModified.longValue() == f2.lastModified.longValue()) {
             return 0;
         }
         return 1;

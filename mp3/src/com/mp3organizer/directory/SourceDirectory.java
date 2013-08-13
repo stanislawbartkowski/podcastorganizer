@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 stanislawbartkowski@gmail.com
+ * Copyright 2013 stanislawbartkowski@gmail.com
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -61,7 +61,8 @@ public class SourceDirectory {
             throws Mp3Exception {
 
         Directory dirDir = new Directory(log);
-        dirDir.readDirectory(sourcedir, true, false);
+        dirDir.readDirectory(sourcedir, true, true);
+        boolean firstFound = true;
         for (FileDescr fd : dirDir.getFileList()) {
             String pathName = fd.fileName;
             String dName = getLName(pathName);
@@ -85,9 +86,14 @@ public class SourceDirectory {
                     isFileToCopy = true;
                 }
             }
-            if (!isFileToCopy) {
-                log.info(pathName + " no files to copy, all files at destination. Start copying");
-                break;
+             if (!isFileToCopy ) {
+            	 if (firstFound) { 
+            		 dirlist.getFileList().clear();
+                     log.info(pathName + " do not copy all files before");
+            	 }
+            	 firstFound = false;
+//                log.info(pathName + " no files to copy, all files at destination. Start copying");
+//                break;
             }
         }
     }

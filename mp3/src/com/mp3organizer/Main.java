@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 stanislawbartkowski@gmail.com
+ * Copyright 2013 stanislawbartkowski@gmail.com
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,6 +40,7 @@ public final class Main {
      * Prints help to standard output.
      */
     private static void drawHelp() {
+    	pL("Version: 2013/08/13");
         pL("Parameters:");
         pL(" /soudir/ /destdir/");
         pL("Example:");
