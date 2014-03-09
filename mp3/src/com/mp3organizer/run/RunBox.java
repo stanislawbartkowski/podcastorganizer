@@ -44,6 +44,6 @@ public final class RunBox {
                 p.getmp3ChangedDir(), log);
         SourceDirectory sou = new SourceDirectory(log, mp3Conv, iTest);
         sou.createList(p.getSourceDirectory(), dest);
-        sou.copyFiles(dest, p.getDestDirectory(), iTest);
+        sou.copyFiles(p,p.getDestDirectory(), iTest);
     }
 }

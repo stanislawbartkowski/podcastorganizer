@@ -37,7 +37,11 @@ class Directory {
     private class fCompare implements Comparator<FileDescr> {
 
         public int compare(final FileDescr f1, final FileDescr f2) {
-            return f1.compare(f2);
+//            return f1.compare(f2);
+            String f1Name = f1.baseFileName;
+            String f2Name = f2.baseFileName;
+            return f1Name.compareTo(f2Name);
+
         }
     }
 

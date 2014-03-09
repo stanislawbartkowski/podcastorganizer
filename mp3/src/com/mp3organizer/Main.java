@@ -40,7 +40,7 @@ public final class Main {
      * Prints help to standard output.
      */
     private static void drawHelp() {
-    	pL("Version: 2013/08/13");
+    	pL("Version: 2014/03/09");
         pL("Parameters:");
         pL(" /soudir/ /destdir/");
         pL("Example:");
